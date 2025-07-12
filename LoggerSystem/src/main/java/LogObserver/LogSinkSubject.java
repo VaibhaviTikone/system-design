@@ -17,10 +17,6 @@ public class LogSinkSubject {
     }
 
     public void notifyObservers(LogLevel level, String message) {
-        for(Map.Entry<LogLevel, List<LogObserver>> entry: observers.entrySet()) {
-            if(entry.getKey().equals(level)) {
-                entry.getValue().forEach(observers -> observers.log(message));
-            }
-        }
+        observers.get(level).forEach(observers -> observers.log(message));
     }
 }
